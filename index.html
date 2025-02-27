@@ -1,1 +1,37 @@
-Ahoj
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <title>Přesměrování…</title>
+
+    <!-- Google Analytics (Gtag) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-TVŮJ-KÓD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('js', new Date());
+        gtag('config', 'UA-TVŮJ-KÓD', {
+            'send_page_view': true
+        });
+
+        // Jakmile se odesílá pageview, přesměrovat
+        gtag('event', 'page_view', {
+            event_callback: function() {
+                window.location.href = "https://contentparty.memberful.com/";
+            }
+        });
+
+        // Fallback - pokud callback neproběhne do 3 sekund, přesměrovat ručně
+        setTimeout(function() {
+            window.location.href = "https://contentparty.memberful.com/";
+        }, 3000);
+    </script>
+
+    <!-- Fallback pro uživatele bez JS -->
+    <meta http-equiv="refresh" content="5;url=https://contentparty.memberful.com/">
+</head>
+<body>
+    <p>Stránka se načítá… Pokud nebudete přesměrováni, <a href="https://contentparty.memberful.com/">klikněte zde</a>.</p>
+</body>
+</html>
