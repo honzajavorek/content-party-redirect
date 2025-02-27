@@ -4,34 +4,40 @@
     <meta charset="utf-8">
     <title>Přesměrování…</title>
 
-    <!-- Google Analytics (Gtag) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-TVŮJ-KÓD"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-N855MN3G');</script>
+    <!-- End Google Tag Manager -->
+
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
 
-        gtag('js', new Date());
-        gtag('config', 'UA-TVŮJ-KÓD', {
-            'send_page_view': true
-        });
-
-        // Jakmile se odesílá pageview, přesměrovat
-        gtag('event', 'page_view', {
-            event_callback: function() {
-                window.location.href = "https://contentparty.memberful.com/";
-            }
-        });
-
-        // Fallback - pokud callback neproběhne do 3 sekund, přesměrovat ručně
-        setTimeout(function() {
+        function redirect() {
             window.location.href = "https://contentparty.memberful.com/";
-        }, 3000);
+        }
+
+        // Počkáme, až GTM odešle pageview, pak přesměrujeme
+        window.dataLayer.push({
+            'event': 'page_view',
+            'eventCallback': redirect
+        });
+
+        // Fallback přesměrování, pokud eventCallback neproběhne do 3s
+        setTimeout(redirect, 3000);
     </script>
 
-    <!-- Fallback pro uživatele bez JS -->
-    <meta http-equiv="refresh" content="5;url=https://contentparty.memberful.com/">
+    <!-- Fallback přesměrování, pokud eventCallback neproběhne do 3s, pro uživatele bez JS -->
+    <meta http-equiv="refresh" content="3;url=https://contentparty.memberful.com/">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N855MN3G"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <p>Stránka se načítá… Pokud nebudete přesměrováni, <a href="https://contentparty.memberful.com/">klikněte zde</a>.</p>
 </body>
 </html>
